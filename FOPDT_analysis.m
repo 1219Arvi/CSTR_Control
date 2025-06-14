@@ -2,6 +2,26 @@ T = out.T_data;
 qc = out.qc_data;
 t=out.tout;
 
+% Estimate steady-state values
+T0 = T(23);                % Temp at which the SS is achieved before applying Step Input
+T_final = T(end);         
+delta_T = T_final - T0; 
+fprintf('Change in Temp %f\n',delta_T);
+delta_q = qc(end) - qc(23);  
+fprintf('Çhange in Coolant flow rate%f\n',delta_q);
+% Process gain
+Kp = delta_T / delta_q;
+
+% Estimate dead time (t0): 
+t_response=205.611;             % Time at which the system reacts to step input
+t_step=200;                     % Time at which system ideally reacts to step input change
+t0 =t_response-t_step;
+
+% Estimate time constant (tau_p):
+T63 = T0 + 0.632 * delta_T        % Temp at which system achives SS after step change
+tau_p=236.0023-205.611;           % t at which Temp reaches T63 and dead time
+
+% Plots
 figure
 
 subplot(2,1,1)  % time vs Temp curve
@@ -17,26 +37,6 @@ xlabel('Time')
 ylabel('Cooling Rate (qc)')
 title('Cooling Rate vs Time')
 grid on
-
-% Estimate steady-state values
-T0 = T(27);               
-T_final = T(end);         
-delta_T = T_final - T0; 
-fprintf('Change in Temp %f\n',delta_T);
-delta_q = qc(end) - qc(27);  
-fprintf('Çhange in Coolant flow rate%f\n',delta_q);
-% Process gain
-Kp = delta_T / delta_q;
-
-% Estimate dead time (t0): 
-t_response=207.273;
-t_step=200;
-t0 =t_response-t_step;
-
-% Estimate time constant (tau_p):
-T63 = T0 + 0.632 * delta_T  ;  
-tau_p=234.5469-207.273;
-
 
 % Display results
 fprintf('Process gain, Kp = %.3f\n', Kp);
