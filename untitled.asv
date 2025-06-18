@@ -1,0 +1,7 @@
+load('NNMPC_dataset.mat');
+whos;
+writematrix(X, 'X_data.csv');
+writematrix(Y, 'Y_data.csv');
+
+
+
