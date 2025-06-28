@@ -1,7 +1,7 @@
 qc_min = 0.0;
-qc_max = 0.04;  
+qc_max = 0.05;  
 q_min = 0.0;
-q_max = 0.04;    
+q_max = 0.05;    
 
 sim_time = 100000;  % total simulation time
 dt = 0.1;           % time step
@@ -16,7 +16,7 @@ q_input = zeros(N,1);
 qc_input(1) = qc_min + (qc_max - qc_min)*rand();
 q_input(1) = q_min + (q_max - q_min)*rand();
 
-step_length = 5000; % steps between random changes (can tune)
+step_length = 5000; % steps between random changes 
 
 for i = 2:N
     if mod(i, step_length) == 0
