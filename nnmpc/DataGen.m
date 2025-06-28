@@ -1,9 +1,9 @@
 qc_min = 0.0;
-qc_max = 0.05;  
+qc_max = 0.06;  
 q_min = 0.0;
-q_max = 0.05;    
+q_max = 0.06;    
 
-sim_time = 100000;  % total simulation time
+sim_time = 200000;  % total simulation time
 dt = 0.1;           % time step
 time = (0:dt:sim_time-dt)';
 N = length(time);
