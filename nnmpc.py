@@ -112,12 +112,12 @@ from keras.regularizers import l2
 inputs = Input(shape=(15,), name="input")
 
 # First dense layer + dropout
-x = Dense(8, activation='leaky_relu', kernel_initializer=HeNormal(), kernel_regularizer=l2(1e-2))(inputs)
+x = Dense(10, activation='leaky_relu', kernel_initializer=HeNormal(), kernel_regularizer=l2(1e-2))(inputs)
 x = Dropout(0.3)(x)
 
 # Second dense layer + dropout
 x = Dense(4, activation='leaky_relu', kernel_initializer=HeNormal(), kernel_regularizer=l2(1e-2))(x)
-x = Dropout(0.2)(x)
+x = Dropout(0.3)(x)
 
 # Output layer
 outputs = Dense(1, activation='linear', name="output")(x)
